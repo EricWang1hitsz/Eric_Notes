@@ -89,11 +89,10 @@
 `git add`--`git commit`--`git push origin master`推送；
 **在本地仓库修改需要推送到远程仓库时，也需要执行<kdb>git add<kdb>。**
 
+**4.Sign in to Github for Atom**
 
+Your Github token:
 
+``71e7f5ff5e904f66b7722a7ea6882d660896c6be``
 
-
-
-
-
-
+LINK: https://github.atom.io/auth/github_package/token
