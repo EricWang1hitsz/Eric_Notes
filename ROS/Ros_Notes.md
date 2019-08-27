@@ -254,7 +254,8 @@ The fixed frame is the reference frame used to denote the "world" frame. This is
 
 # 12. 删掉安装到系统的库
 
-在执行完``make install``后会在``build``目录下生成一个``install_manifest.tx``t文件，该文件里保存了库和头文件所安装的位置
+在执行完``make install``后会在``build``目录下生成
+个``install_manifest.tx``t文件，该文件里保存了库和头文件所安装的位置
 
 ``xargs rm < install_manifest.txt``
 
