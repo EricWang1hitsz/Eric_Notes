@@ -250,3 +250,12 @@ The fixed frame is the reference frame used to denote the "world" frame. This is
 终端输入：``./脚本文件名称.sh``或``可执行文件名称``，这种情况在当前的目录下查找该文件；
 
 ![](assets/markdown-img-paste-20190823213315407.png)
+
+
+# 12. 删掉安装到系统的库
+
+在执行完``make install``后会在``build``目录下生成一个``install_manifest.tx``t文件，该文件里保存了库和头文件所安装的位置
+
+``xargs rm < install_manifest.txt``
+
+执行该命令，即可删除库，但保存了文件夹。
