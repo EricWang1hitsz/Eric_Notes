@@ -260,3 +260,11 @@ The fixed frame is the reference frame used to denote the "world" frame. This is
 ``xargs rm < install_manifest.txt``
 
 执行该命令，即可删除库，但保存了文件夹。
+
+# 13. rviz
+
+``2D Nav Goal:``set a goal sent on the "/move_base_simple/goal" ROS topic;
+
+``2D Pose Estimate:``set an initial pose to the location system (sent on the "/initialpose" ROS topic);
+
+``Publish Point:`` sent a <geometry_msgs::PointStamped> point on the "/clicked_point" ROS topic;
