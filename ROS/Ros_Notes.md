@@ -268,3 +268,7 @@ The fixed frame is the reference frame used to denote the "world" frame. This is
 ``2D Pose Estimate:``set an initial pose to the location system (sent on the "/initialpose" ROS topic);
 
 ``Publish Point:`` sent a <geometry_msgs::PointStamped> point on the "/clicked_point" ROS topic;
+
+# 14. 删除文件夹
+
+``sudo rm -rf $directory_name``
