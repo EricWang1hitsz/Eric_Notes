@@ -15,7 +15,8 @@
 
 #3.Typedef/  Typedef typename
 
-##3.1Typedef:
+##3.1Typedef: 类型别名
+
 **简化类型的定义，别名**
 
 `vector <list<int *>*>temp(10);`
