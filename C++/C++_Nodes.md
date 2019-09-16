@@ -97,3 +97,31 @@ Your Github token:
 ``71e7f5ff5e904f66b7722a7ea6882d660896c6be``
 
 LINK: https://github.atom.io/auth/github_package/token
+
+# 7. New and Boost::share_ptr
+
+````
+RbPrmDevicePtr_t RbPrmDevice::create (const std::string& name, DevicePtr_t& robotRom)
+{
+    //eric_wang: typedef std::map<std::string, DevicePtr_t> T_Rom;
+    hpp::model::T_Rom roms;
+    roms.insert(std::make_pair(robotRom->name(),robotRom));
+
+    //eric_wang: define a pointer object for class RbPrmDevice;
+    //eric_wang: initialization the object with class constructor function;
+    RbPrmDevice* rbprmDevice = new RbPrmDevice(name, roms);
+    //eric_wang： boost::shared_ptr <RbPrmDevice> res (rbprmDevice);
+    //eric_wang: create a pointer "res" pointing to the class object "rbprmDevice";
+    RbPrmDevicePtr_t res (rbprmDevice);
+    res->init (res);
+    return res;
+}
+
+RbPrmDevicePtr_t RbPrmDevice::create (const std::string& name, const hpp::model::T_Rom &robotRoms)
+{
+    RbPrmDevice* rbprmDevice = new RbPrmDevice(name, robotRoms);
+    RbPrmDevicePtr_t res (rbprmDevice);
+    res->init (res);
+    return res;
+}
+````
