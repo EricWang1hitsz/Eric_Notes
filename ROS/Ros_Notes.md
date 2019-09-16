@@ -272,3 +272,29 @@ The fixed frame is the reference frame used to denote the "world" frame. This is
 # 14. 删除文件夹
 
 ``sudo rm -rf $directory_name``
+
+# 15. ROS Subscriber
+````
+class pcl_filter
+{
+public:
+    //constructor function
+    pcl_filter()
+    {
+        cloud_sub = nh_.subscribe<sensor_msgs::PointCloud2>("/camera/depth/points", 1, &pcl_filter::pointcloud_filter_cb, this);
+
+    }
+
+    void pointcloud_filter_cb(const sensor_msgs::PointCloud2::ConstPtr &msg)
+    {
+        pcl::PointCloud<pcl::PointXYZRGB> cloud;
+        pcl::fromROSMsg(*msg, cloud);
+    }
+
+
+private:
+
+    ros::Subscriber cloud_sub;
+    ros::NodeHandle nh_;
+};
+````
