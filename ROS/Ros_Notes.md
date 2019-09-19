@@ -298,3 +298,20 @@ private:
     ros::NodeHandle nh_;
 };
 ````
+
+# 16. kinetic: /camera/depth/points Frame_id
+
+在gazebo中，kinetic生成的点云(``topic:/camera/depth/points``)位于坐标系``/camera_frame_optical``下；
+
+方法：订阅该话题，打印出点云的Frame_id;
+
+
+**点云过滤**
+
+过滤后的新点云的Frame_id设为与原来点云相同，即坐标系``/camera_frame_optical``：
+
+![](assets/markdown-img-paste-20190919224648522.png)
+
+**点云转化为八叉树**
+
+生成的八叉树地图Frame_id可以选择为``/odom``,不必与点云坐标相同； **WHY?????? 2019.09.19**
