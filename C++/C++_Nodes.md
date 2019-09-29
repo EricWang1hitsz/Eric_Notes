@@ -125,3 +125,46 @@ RbPrmDevicePtr_t RbPrmDevice::create (const std::string& name, const hpp::model:
     return res;
 }
 ````
+
+# 8. 动态数组
+
+作用：一次性为数组中的很多元素分配内存；
+
+``int *pia = new int [get_size()]``
+
+new分配一个int类型数组，并返回指向第一个int数组元素的指针；
+
+# 9. 指针
+
+# 9.1 指针代替数组
+
+在程序中使用指针代替数组，因为变量指针可以递增，而数组不能递增，因为数组是一个常量指针：
+
+````
+#include <iostream>
+
+using namespace std;
+const int MAX = 3;
+
+int main ()
+{
+   int  var[MAX] = {10, 100, 200};
+   int  *ptr;
+
+   // 指针中的数组地址
+   ptr = var;// 返回var数组的第一个元素的地址；
+   for (int i = 0; i < MAX; i++)
+   {
+      cout << "Address of var[" << i << "] = ";
+      cout << ptr << endl;
+
+      cout << "Value of var[" << i << "] = ";
+      cout << *ptr << endl;
+
+      // 移动到下一个位置
+      ptr++;
+   }
+   return 0;
+}
+
+````
