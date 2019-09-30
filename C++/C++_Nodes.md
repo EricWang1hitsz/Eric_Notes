@@ -162,7 +162,7 @@ int main ()
       cout << *ptr << endl;
 
       // 移动到下一个位置
-      ptr++;
+      ptr++;//通过使用指针的算术运算来访问数组
    }
    return 0;
 }
