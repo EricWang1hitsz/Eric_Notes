@@ -94,7 +94,7 @@ after that, install it again
 
 **当查找启动文件时，roslaunch工具会同时搜索每个功能包目录的子目录.**
 
-### 启动文件的基本元素
+### 1. 启动文件的基本元素
 
 **1.插入根元素** 启动文件是XML文件，每个XML文件都必须要包含一个根元素.对于ROS启动文件，根元素由一对launch标签定义：
 `                    <launch>`
@@ -146,7 +146,7 @@ after that, install it again
 
 `launch-prefix="xetrm-e"`单独打开一个终端，运行节点.
 
-### 启动文件的启动参数args
+### 2. 启动文件的启动参数args
 
 **优点：通过设置参数来描述节点在不同ROS会话中运行时可能需要改变的一小部分，从而避免代码重复**
 
@@ -176,6 +176,27 @@ after that, install it again
 
 *参数获取:*`param name=:"time_step" value="$(arg time_step)"/>`
 
+### 3. 启动文件中的参数设置Param
+
+**1.设置参数**
+````
+<param name="/free_gait/robot_description" value="$(find quadruped_model)/urdf/simpledog.urdf"/>
+<param name="/free_gait/stop_execution_service" value="/free_gait/stop_execution_service"/>
+````
+**2.设置私有参数**
+
+在节点元素中包含Param元素：
+````
+<node>
+<param name="param-name" value="param-value" />
+</node>
+````
+**3.在文件中读取参数**
+
+可以一次性从文件中加载多个参数：
+
+``<rosparam command="load" file="path-to-param-file" />``
+
 # 5. `/configure、make、make install`命令`
 
 **1. `./configure`**
@@ -190,6 +211,9 @@ after that, install it again
 **3.`make install`编译安装**
 
 类似与`windows`下安装软件，安装路径等参数在`./configre`时可以设置,执行这一步时，一般都需要root权限，因为要向系统写入文件.
+
+
+
 
 # 6. 安装deb包缺少依赖解决办法
 
@@ -319,3 +343,17 @@ private:
 # 17. 链接库失败
 
 如果定义库路径失败，可以试一试直接定义链接到so文件；
+
+# 18. Velodyne /Laser Radar
+
+在仿真中，激光雷达发布的消息类型:
+``sensor_msgs/PointCloud2``:
+
+````
+hit@hit-NUC7i7BNH:~/catkin_ws$ rostopic type /velodyne_points
+sensor_msgs/PointCloud2
+````
+插件频率设置为10Hz,但实际频率只有1Hz：
+````
+rostopic hz /velodyne_points
+````
