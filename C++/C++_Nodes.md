@@ -98,6 +98,47 @@ Your Github token:
 
 LINK: https://github.atom.io/auth/github_package/token
 
+**5.新建分支**
+
+本地仓库新建分支，并将其推到远程仓库，在推送时远程仓库会自动建立：
+````
+git branch eric_wang_dev
+git push -u origin eric_wang_dev
+````
+**6.切换分支**：
+
+``git checkout eric_wang_dev``
+
+分支查看：
+
+``git branch -a`` 带*号的代表你当前工作目录所处的分支
+
+**7.合并分支**
+
+每次提交，Git都会将他们串成一条时间线，这条时间线就是一个分支、
+
+合并前分支示意图：
+
+![](assets/markdown-img-paste-20191005211320354.png)
+
+合并后分支示意图：
+
+![](assets/markdown-img-paste-20191005211855879.png)
+
+分支合并：
+
+``git merge eric_wang_dev``
+
+将``eric_wang_dev``分支的内容合并到``master``分支上；
+
+**8.合并冲突解决**
+
+``git status``
+
+查看目前仓库状态
+
+
+
 # 7. New and Boost::share_ptr
 
 ````
