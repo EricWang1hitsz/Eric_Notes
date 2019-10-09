@@ -357,3 +357,16 @@ sensor_msgs/PointCloud2
 ````
 rostopic hz /velodyne_points
 ````
+
+# 19. Unbuntu + ROS 源
+
+Ubuntu Software 对应于ubuntu源，Other Software 对应于ROS源；
+
+![](assets/markdown-img-paste-20191009152351843.png)
+
+/etc/apt/source.list文件加载Ros源， `Reload`相当于`sudo apt-get update`；
+
+
+![](assets/markdown-img-paste-20191009152717417.png)
+
+在安装ROS教程中，该命令是加载ROS官方源，但较慢；`Mirrors`这里有不同国家的**ROS源**;
