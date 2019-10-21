@@ -370,3 +370,15 @@ Ubuntu Software 对应于ubuntu源，Other Software 对应于ROS源；
 ![](assets/markdown-img-paste-20191009152717417.png)
 
 在安装ROS教程中，该命令是加载ROS官方源，但较慢；`Mirrors`这里有不同国家的**ROS源**;
+
+# 20. Time / Timestamp
+
+1. 仿真时间`simulation time`: Toptic `/clock` publish "simulation time";
+
+2. 系统时间`wall-time`：use the computer's system clock as a time source;
+
+3. 在多机使用ROS时，需要同步两个设备的系统时间（wall-clock time），使用工具ntp(The Network Time Protocol), chrony. **如果不同步的话，会引起tf问题。**
+
+4. `use_sim_time`: In order for a ROS node to use simulation time according to the /clock topic, the /use_sim_time parameter must be set to true before the node is initialized. This can be done in a launchfile or from the command line.
+
+5. `Rviz: Ros Time`: it allows you to see how much ROS Time time has passed, vs. how much "Wall Clock" (aka real) time has passed.以电脑系统时间为计算点。TODO: `Reset`什么功能？？？？
