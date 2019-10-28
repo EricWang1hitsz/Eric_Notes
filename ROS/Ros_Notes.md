@@ -297,7 +297,7 @@ The fixed frame is the reference frame used to denote the "world" frame. This is
 
 ``sudo rm -rf $directory_name``
 
-# 15. ROS Subscriber
+# 15. ROS Publisher Subscriber
 ````
 class pcl_filter
 {
@@ -322,6 +322,47 @@ private:
     ros::NodeHandle nh_;
 };
 ````
+**发布者**：
+
+`advertise()`最后的参数是一个整数，表示这个发布者发布的消息序列的大小。
+
+`pub.pulish(msg)`将所给的消息添加到发布者的输出消息队列中，在后台有一个单独的线程负责实际发送消息到话题Toptic。
+
+如果`pub.publish(msg)`发布比队列可以容纳更多的消息，最早进入队列的未发送到订阅者的消息将被丢弃。
+
+`ros::Rate rate(2)`控制循环运行速度，没有这种控制，计算机会以最快速度发布消息。
+
+`min: 0.500s max:0.500s std dev: 0.00006s window:10`可看出消息以每秒2条的速度发布，且时间上偏差非常小。
+
+
+**订阅者**：
+
+当新的消息到达时，它们会被保存在一个队列中，直到ROS去执行相应的回调函数。如果新消息到达时队列已满,最早到达的还没有被处理的消息将会被丢弃以便腾出空间来。
+
+对于有些传输特别快的消息，尤其需要注意合理控制消息池大小和ros::spinOnce()执行频率; 比如消息送达频率为10Hz, ros::spinOnce()的调用频率为5Hz，那么消息池的大小就一定要大于2，才能保证数据不丢失，无延迟。
+
+````
+int main(int argc, char **argv)
+{
+    ros::init(argc, argv, "listener");
+    ros::NodeHandle n;
+    ros::Subscriber sub = n.subscribe("chatter", 2, chatterCallback);
+    //在一次阶段循环中，调用一次回调函数，得到两个消息；
+
+    ros::Rate loop_rate(5);
+    while (ros::ok())
+    {
+        /*...TODO...*/
+
+        ros::spinOnce();
+        loop_rate.sleep();
+    }
+    return 0;
+}
+````
+参考：https://www.cnblogs.com/liu-fa/p/5925381.html
+
+
 
 # 16. kinetic: /camera/depth/points Frame_id
 
@@ -377,8 +418,35 @@ Ubuntu Software 对应于ubuntu源，Other Software 对应于ROS源；
 
 2. 系统时间`wall-time`：use the computer's system clock as a time source;
 
-3. 在多机使用ROS时，需要同步两个设备的系统时间（wall-clock time），使用工具ntp(The Network Time Protocol), chrony. **如果不同步的话，会引起tf问题。**
+3. 在多机使用ROS时，需要同步两个设备的系统时间（wall-clock time），使用工具ntp(The Network Time Protocol), chrony. **如果不同步的话，会引起tf问题。** 同步时间： `sudo ntpdate IP`
+
 
 4. `use_sim_time`: In order for a ROS node to use simulation time according to the /clock topic, the /use_sim_time parameter must be set to true before the node is initialized. This can be done in a launchfile or from the command line.
 
 5. `Rviz: Ros Time`: it allows you to see how much ROS Time time has passed, vs. how much "Wall Clock" (aka real) time has passed.以电脑系统时间为计算点。TODO: `Reset`什么功能？？？？
+
+# 21. ros::spin()与ros::spinOnce()
+
+**用途**：节点进入循环状态，当有订阅的消息到达，会调用回调函数，若没有消息到达，则不会调用回调函数。
+
+**区别**：
+
+`ros::spinOnce()`要求ROS去执行所有挂起的回调函数，然后将控制权返回给我们；
+
+`ros::spin()`要求ROS等待并执行回调函数，直到这个节点关闭；
+
+`ros::spin()`相当于这样一个循环：
+````
+while(ros::ok())
+{
+  ros::spinOnce();
+}
+````
+
+**选择**: 如果程序里除了响应回调函数，还有其他重复性工作要做，那么使用`ros::spinOnce()`,具体做法写一个循环，做其他事情，并且周期性地调用`ros::spinOnce()`来处理回调。
+
+**在程序中，如果忽略调用`ros::spin()`与`ros::spinOnce()`，在这种情况下，ROS永远不会执行你的回调函数。**
+
+参考1： https://blog.csdn.net/hzy925/article/details/79373403
+
+参考2：https://www.cnblogs.com/liu-fa/p/5925381.html
