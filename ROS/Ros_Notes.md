@@ -362,7 +362,7 @@ int main(int argc, char **argv)
 ````
 参考：https://www.cnblogs.com/liu-fa/p/5925381.html
 
-
+**Attention: 在订阅某话题时，也会向Master注册此话题，即使没有此话题的发布者，在rostopic list会显示该话题**
 
 # 16. kinetic: /camera/depth/points Frame_id
 
