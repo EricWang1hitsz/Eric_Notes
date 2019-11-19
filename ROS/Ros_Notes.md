@@ -425,6 +425,11 @@ Ubuntu Software 对应于ubuntu源，Other Software 对应于ROS源；
 
 5. `Rviz: Ros Time`: it allows you to see how much ROS Time time has passed, vs. how much "Wall Clock" (aka real) time has passed.以电脑系统时间为计算点。TODO: `Reset`什么功能？？？？
 
+# 21. 多ROS设备时间同步
+
+CSDN Blog:
+https://blog.csdn.net/weixin_39374743/article/details/103097742
+
 # 21. ros::spin()与ros::spinOnce()
 
 **用途**：节点进入循环状态，当有订阅的消息到达，会调用回调函数，若没有消息到达，则不会调用回调函数。
