@@ -209,3 +209,31 @@ int main ()
 }
 
 ````
+# 10. 在静态成员函数中访问非静态成员变量
+
+在正常情况下，一个static修饰的静态成员函数是无法对非静态成员变量进行访问与操作的，因为访问非静态成员要用this指针，静态成员函数没有this指针，故不能访问。
+
+**在静态成员函数中访问非静态成员变量方式：** 在静态成员函数中传递类的地址来实现对类对象的非静态成员变量进行访问与操作。
+
+````
+class example
+{
+public:
+
+    static void fun1();
+
+private:
+
+int dollar;
+
+};
+
+void example::fun1()
+{
+    example* exam; // 创建class指针
+
+    int money;
+
+    money = exam->dollar; // 访问类的非静态成员变量
+}
+````
