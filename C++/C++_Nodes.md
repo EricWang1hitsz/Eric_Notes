@@ -69,7 +69,7 @@
 这里的锁是动词而非名词，互斥对象的主要操作有两个加锁`lock`和释放锁`unlock`.
 当一个线程对互斥对象进行`lock`操作并成功获得这个互斥对象的所有权，在此线程对此对象`unlock`前，其他线程对这个互斥对象的`lock`操作都会被阻塞.
 
-#6. Github
+#6. Github 基本操作
 
 `git config user.name user.email`
 
@@ -77,10 +77,13 @@
 `git init` 把当前目录设置为Git可管理的仓库；
 `git add readme.txt` 告诉Git,把文件添加到本地仓库；
 `git commot -m "wrote a readme file"` 告诉Git，把文件提交到本地仓库；
-**可以`git add`多个文件，最后一起`git commit`到本地仓库。
+**可以`git add`多个文件，最后一起`git commit`到本地仓库**。
 
 **2.关联远程仓库**
 `git remote add origin https://github.com/EricWang1hitsz/Eric_Note.git` 将本地仓库与远程仓库关联；
+
+**本地仓库可以关联多个远程仓库，`orgin`为远程仓库名称，这个名字是随便取。**
+
 `git push -u origin master` 将本地仓库的所有内容推送到远程仓库，注意是git commit的文件！
 <kdb>-u<kdb>将本地master分支与远程master分支关联起来，在以后的推送和拉取就可以简化命令。
 
@@ -237,3 +240,40 @@ void example::fun1()
     money = exam->dollar; // 访问类的非静态成员变量
 }
 ````
+# 11. Github Pull Request
+
+**1. 不同仓库之间的操作**
+
+![](assets/markdown-img-paste-2019122414423380.png)
+
+**2. Pull  Request一般流程：**
+
+1. 首先Fork别人的项目，此时自己的远程仓库中有该项目；
+
+2. 将该项目从自己的远程仓库Clone到本地；
+
+3. 一般新建一个开发分支，在原有的基础上进行开发；
+
+4. 对该项目添加新的功能后，此时将新建的分支提交到远程仓库；
+
+5. **如果希望原有仓库采纳自己的新功能，此时需要Pull Request，打开GitHub，切换到刚创建的分支，进行New pull request；**
+
+6. 当原有仓库持有人会收到你的请求信息，是非采纳。
+
+**3. 仓库的维护：**
+
+当原有仓库更新后，自己的本地仓库如何更新，保持与原有仓库同步的状态：
+
+1. 关联原有仓库；
+
+`git remote add 原有仓库名称 git:://github.com`//仓库链接
+
+2. 将原有仓库下载到本地仓库；
+
+`git fetch`
+
+3. 合并分支
+
+`git merge`
+
+![](assets/markdown-img-paste-20191224152754612.png)
