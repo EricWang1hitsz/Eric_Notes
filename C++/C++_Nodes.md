@@ -277,3 +277,12 @@ void example::fun1()
 `git merge`
 
 ![](assets/markdown-img-paste-20191224152754612.png)
+
+
+# 12. QT
+
+**QT使用qmake构建项目时添加C++11标准：**
+
+在.pro工程文件中添加，否则类似智能指针这样的新工具无法使用：
+
+``QMAKE_CXXFLAGS += -std=c++0x``
