@@ -286,3 +286,43 @@ void example::fun1()
 在.pro工程文件中添加，否则类似智能指针这样的新工具无法使用：
 
 ``QMAKE_CXXFLAGS += -std=c++0x``
+
+# 13. System() Function
+
+Linux下System函数介绍，头文件定义在`#include<stdlib.h>`:
+
+```
+int syetem(const char *string)
+```
+`system()`函数会调用`fork()`产生子进程，由子进程来调用`/bin/sh-c string`来执行参数string字符串所代表的命令,此命令执行完后随即返回原调用的进程。
+
+# 14. Vector
+
+**1. 向vector对象添加对象**
+
+```
+vector<string> text;         // empty vector(空的容器)
+while (cin >> word)
+{
+    text.push_back(word);    // append word to text(往容器里面塞值)
+}
+```
+**用push_back向空的vector对象添加对象时，会自动申请内存,不需要关心vector大小**
+
+**2. vector下标操作**
+
+vector中的对象没有命名的，但可以按vector中对象的位置来访问它们，通常采用下标操作来访问`[]`或`.at()`;
+
+典型的两种错误：
+```
+vector<int> ivec;       // empty vector
+cout << ivec[0];       // Error: ivec has no elements!
+
+ivec[0] = 1; // 对ivec[0]进行赋值，会发生错误，因为 ivec has no elements
+             // 需要先有element，才可以进行赋值；
+
+vector<int> ivec2(10); // vector with 10 elements
+cout << ivec[10];       // Error: ivec has elements 0...9
+```
+
+参考：https://blog.csdn.net/lovemysea/article/details/5303895
