@@ -278,6 +278,25 @@ void example::fun1()
 
 ![](assets/markdown-img-paste-20191224152754612.png)
 
+**4. Example**
+
+如果你在Github上Fork了某个仓库，而你的本地仓库Clone于原有仓库，并不是Clone于你自己的Github，此时可以将本地仓库与你的Gitbug仓库关联起来：
+
+1. 一个本地仓库可以关联多个远程仓库，此时可以再关联下你的Github：
+
+`git remote add 仓库名称 git:://github.com`//仓库链接`
+
+2. 可以查看本地仓库关联了的所有远程仓库：
+
+`git remote -v`
+
+`git remote rm 远程仓库名称` // 该命令可删除关联的远程库
+
+3. 将本地仓库推到新的远程仓库，主要本地分支名称需要与远程分支名称相同：
+
+`git push -u 远程仓库名称 分支名称`
+
+Link：https://blog.csdn.net/qq_25458977/article/details/87875641
 
 # 12. QT
 
