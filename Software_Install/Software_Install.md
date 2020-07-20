@@ -37,3 +37,10 @@ Download deb Package firstly
 Then `sudo dpkg -i xxx.deb`
 
 Link:https://github.com/wszqkzqk/deepin-wine-ubuntu
+
+## 4. Vscode + Leetcode刷题神器
+
+Nodejs8+环境配置：
+https://blog.csdn.net/cgs1999/article/details/89703649
+
+改为中国区，邮箱登录；

@@ -345,3 +345,44 @@ cout << ivec[10];       // Error: ivec has elements 0...9
 ```
 
 参考：https://blog.csdn.net/lovemysea/article/details/5303895
+
+# 15. 智能指针
+
+## 1. share_ptr引用计数机制
+
+引用计数记录当前内存资源被多少个智能指针引用：
+
+```
+int main()
+{
+	string *s1 = new string("s1");
+
+	shared_ptr<string> ps1(s1);
+	shared_ptr<string> ps2;
+	ps2 = ps1;
+
+	cout << ps1.use_count()<<endl;	//2
+	cout<<ps2.use_count()<<endl;	//2
+
+  // 若ps1.use_count()为1,返回true，否则返回false
+	cout << ps1.unique()<<endl;	//0
+
+	string *s3 = new string("s3");
+	shared_ptr<string> ps3(s3);
+
+	cout << (ps1.get()) << endl;	//033AEB48
+	cout << ps3.get() << endl;	//033B2C50
+	swap(ps1, ps3);	//交换所拥有的对象
+	cout << (ps1.get())<<endl;	//033B2C50
+	cout << ps3.get() << endl;	//033AEB48
+
+	cout << ps1.use_count()<<endl;	//1
+	cout << ps2.use_count() << endl;	//2
+	ps2 = ps1;
+	cout << ps1.use_count()<<endl;	//2
+	cout << ps2.use_count() << endl;	//2
+	ps1.reset();	//放弃ps1的拥有权，引用计数的减少
+	cout << ps1.use_count()<<endl;	//0
+	cout << ps2.use_count()<<endl;	//1
+}
+```
