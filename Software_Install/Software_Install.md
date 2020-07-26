@@ -44,3 +44,18 @@ Nodejs8+环境配置：
 https://blog.csdn.net/cgs1999/article/details/89703649
 
 改为中国区，邮箱登录；
+
+## 5. Vscode C++ 开发环境配置
+
+1. 安装插件:
+- C/C++
+- Code Runner
+2. 配置文件：
+- task.json文件
+- launch.json文件
+3. 支持C++11,配置Code Runner插件，添加如下：
+```
+"code-runner.executorMap":{
+    "cpp": "cd $dir && g++ -std=c++11 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+},
+```
