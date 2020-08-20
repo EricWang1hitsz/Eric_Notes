@@ -7,7 +7,6 @@ remove the terminator purgely
 `sudo apt-get purge terminator`
 
 delete the configuration files loacated in your home directory
-
 `sudo rm -rfvI /home/.config/terminator`
 
 after that, install it again
@@ -455,3 +454,10 @@ while(ros::ok())
 参考1： https://blog.csdn.net/hzy925/article/details/79373403
 
 参考2：https://www.cnblogs.com/liu-fa/p/5925381.html
+
+# 22. CMake指定编译顺序
+在生成ros message, 其他package依赖此message,往往会报没有找到message头文件的错误，这是因为在编译此package之前没有编译生成message，因此在cmakelist添加
+```
+add_dependencies(package_node ${${PROJECT_NAME}_EXPORTED_TARGETS})
+```
+http://wiki.ros.org/catkin/CMakeLists.txt
