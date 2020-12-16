@@ -461,3 +461,7 @@ while(ros::ok())
 add_dependencies(package_node ${${PROJECT_NAME}_EXPORTED_TARGETS})
 ```
 http://wiki.ros.org/catkin/CMakeLists.txt
+
+# 23. Ros Topic格式
+无"/"时,话题名为"/节点名/话题名";
+有"/"时,话题名为"/自定义的";
